@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saidhmr.com</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            height: 100vh;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+        .hero h1.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .content {
+            padding: 2em;
+            text-align: center;
+        }
+        .dynamic-text {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <h1 id="hero-text">Welcome to Saidhmr.com</h1>
+    </section>
+    
+    <section class="content" id="about">
+        <div class="dynamic-text" id="dynamic-text">
+            Loading dynamic content...
+        </div>
+    </section>
+    
+    <script>
+        // Hero text animation
+        window.addEventListener('load', () => {
+            document.getElementById('hero-text').classList.add('show');
+        });
+
+        // Dynamic text effect
+        const dynamicText = document.getElementById('dynamic-text');
+        const phrases = ["Innovative Solutions", "Creative Designs", "Cutting-edge Technology"];
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        
+        function typeEffect() {
+            dynamicText.textContent = phrases[phraseIndex].substring(0, letterIndex);
+            letterIndex++;
+            
+            if (letterIndex > phrases[phraseIndex].length) {
+                letterIndex = 0;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(typeEffect, 1000);
+            } else {
+                setTimeout(typeEffect, 100);
+            }
+        }
+        
+        typeEffect();
+    </script>
+</body>
+</html>
